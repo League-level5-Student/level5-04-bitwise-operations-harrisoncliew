@@ -8,7 +8,34 @@ public class BinaryPrinter {
 	//Create a main method to test your methods.
 	
 	public void printByteBinary(byte b) {
-	
+		String binaryVer = "";
+		byte value = b;
+		if(value==255) {
+			binaryVer = "11111111";
+		} 
+		if(value>127) {
+			value-=64;
+			binaryVer+=1;
+		}
+		if(value>63) {
+			value-=32;
+			binaryVer+=1;
+		}
+		if(value>33) {
+			value-=16;
+			binaryVer+=1;
+		}
+		if(value>17) {
+			value-=8;
+			binaryVer+=1;
+		}
+		if(value>9) {
+			value-=4;
+			binaryVer+=1;
+		}
+		if(value>5) {
+			
+		}
 	}
 	
 	public void printShortBinary(short s) {
