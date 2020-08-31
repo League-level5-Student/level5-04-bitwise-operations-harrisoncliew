@@ -7,46 +7,42 @@ public class BinaryPrinter {
 	//Don't be afraid to use the methods that are already complete to finish the others.
 	//Create a main method to test your methods.
 	
-	public void printByteBinary(byte b) {
-		String binaryVer = "";
-		byte value = b;
-		if(value==255) {
-			binaryVer = "11111111";
-		} 
-		if(value>127) {
-			value-=64;
-			binaryVer+=1;
-		}
-		if(value>63) {
-			value-=32;
-			binaryVer+=1;
-		}
-		if(value>33) {
-			value-=16;
-			binaryVer+=1;
-		}
-		if(value>17) {
-			value-=8;
-			binaryVer+=1;
-		}
-		if(value>9) {
-			value-=4;
-			binaryVer+=1;
-		}
-		if(value>5) {
-			
-		}
+	
+	public static void main(String[] args) {
+		BinaryPrinter bp = new BinaryPrinter();
+		bp.printByteBinary((byte) Byte.MAX_VALUE);
+		System.out.println();
+		bp.printShortBinary((short) Short.MAX_VALUE);
+		System.out.println();
+		bp.printIntBinary((int) Integer.MAX_VALUE);
+		System.out.println();
+		bp.printLongBinary((long) Long.MAX_VALUE);
 	}
 	
-	public void printShortBinary(short s) {
+	public void printByteBinary(byte b) {
+		System.out.print((b & 0b10000000) >> 7);
+		System.out.print((b & 0b01000000) >> 6);
+		System.out.print((b & 0b00100000) >> 5);
+		System.out.print((b & 0b00010000) >> 4);
+		System.out.print((b & 0b00001000) >> 3);
+		System.out.print((b & 0b00000100) >> 2);
+		System.out.print((b & 0b00000010) >> 1);
+		System.out.print((b & 0b00000001));
 		
+		
+	}
+	public void printShortBinary(short s) {
+		printByteBinary((byte)((s & 0xFF00) >> 8));
+		printByteBinary((byte)((s & 0x00FF)));
 	}
 	
 	public void printIntBinary(int i) {
-		
+		printShortBinary((short)((i) >> 16));
+		printShortBinary((short)((i & 0x0000FFFF)));
 	}
 	
 	public void printLongBinary(long l) {
-		
+		printIntBinary((int) ((l) >> 32));
+		printIntBinary((int) ((l & 0x00000000FFFFFFFF)));
 	}
 }
